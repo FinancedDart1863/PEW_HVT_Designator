@@ -34,7 +34,7 @@ Discord: FinancedDart#1863
 
 Project Link: https://github.com/FinancedDart1863/PEW_HVT_Designator
 
-Steam Workshop: https://steamcommunity.com/profiles/76561199466221481/myworkshopfiles/?appid=244850
+Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2912937383
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
