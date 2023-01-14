@@ -31,6 +31,7 @@ namespace PEWHVTDetector
         private static List<RadarObjects> m_radarObjectList;
         private static bool m_init = false;
         private static bool m_LCDClear = false;
+		public static bool broadcastHVTMessage = false;
 
         //private static List<IMyEntity> m_LCDParentList = new List<IMyEntity>();
         private static List<RadarOutputItem> m_radarOutputList = new List<RadarOutputItem>();
@@ -119,6 +120,8 @@ namespace PEWHVTDetector
             double radius = (double)1000000;
             BoundingSphereD sphere = new BoundingSphereD(position, radius);
             List<IMyEntity> entities = MyAPIGateway.Entities.GetEntitiesInSphere(ref sphere);
+			
+			broadcastHVTMessage = false;
 
             foreach (IMyEntity foundEntity in entities)
             {
@@ -144,6 +147,11 @@ namespace PEWHVTDetector
                     }
                 }
             }
+			if (broadcastHVTMessage == true)
+			{
+                MyVisualScriptLogicProvider.SendChatMessageColored("One or more high value targets have been spotted!", VRageMath.Color.White);
+				broadcastHVTMessage = false;
+			}
             return true;
         }
 
@@ -164,7 +172,7 @@ namespace PEWHVTDetector
                 String customdata = detectorBeacon.CustomData;
 			    if (customdata.Length<2) // empty string, so let's get some defaults in there first
 			    {
-                    detectorBeacon.CustomData = "HVTBlockCountThreshold:3000\n";
+                    detectorBeacon.CustomData = "HVTBlockCountThreshold:7500\n";
 			    }
 			    customdata = customdata.ToLowerInvariant();
                 //MyAPIGateway.Utilities.ShowMessage("Debug", "break1");
@@ -209,7 +217,8 @@ namespace PEWHVTDetector
 
                 if ((grid.BlocksCount > blockCountThreshold) || (gridGroupTotalBlocks > blockCountThreshold))
                 {
-                    MyVisualScriptLogicProvider.SendChatMessageColored("A high value target has been spotted!", VRageMath.Color.White);
+                    //MyVisualScriptLogicProvider.SendChatMessageColored("A high value target has been spotted!", VRageMath.Color.White);
+					broadcastHVTMessage = true;
                     if (!grid.IsPowered)
                     {
                         grid.SwitchPower();
