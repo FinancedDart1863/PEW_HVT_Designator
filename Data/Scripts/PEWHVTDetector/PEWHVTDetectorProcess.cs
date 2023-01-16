@@ -116,6 +116,7 @@ namespace PEWHVTDetector
             if (!beacon.IsWorking || !beacon.IsFunctional)
                 return false;
 
+			//MyVisualScriptLogicProvider.SendChatMessageColored("BeaconProcess", VRageMath.Color.White);
             Vector3D position = parent.GetPosition();
             double radius = (double)1000000;
             BoundingSphereD sphere = new BoundingSphereD(position, radius);
@@ -147,7 +148,7 @@ namespace PEWHVTDetector
                     }
                 }
             }
-			if (broadcastHVTMessage == true)
+			if (broadcastHVTMessage)
 			{
                 MyVisualScriptLogicProvider.SendChatMessageColored("One or more high value targets have been spotted!", VRageMath.Color.White);
 				broadcastHVTMessage = false;
