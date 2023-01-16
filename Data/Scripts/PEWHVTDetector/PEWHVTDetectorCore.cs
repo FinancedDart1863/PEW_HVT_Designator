@@ -19,7 +19,7 @@ namespace PEWHVTDetector
 {
     public struct HVTDetectorSettings
     {
-        public static int CheckForHVTInterval = 5; // How often to scan for HVT grids. This parameter is mod level but is overriden via in-game custom data.
+        public static int CheckForHVTInterval = 3600; // How often to scan for HVT grids. This parameter is mod level but is overriden via in-game custom data.
         public static int ModLogicInterval = 1; // How often to execute mod logic. Leave this as 1 for once per second. This parameter is mod level and is not customizable via in-game custom data.
     }
 
