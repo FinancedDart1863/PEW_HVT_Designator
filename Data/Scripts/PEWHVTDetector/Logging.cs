@@ -24,7 +24,7 @@ namespace PEWHVTDetector
 					return null;
 
 				if (m_instance == null)
-					m_instance = new Logging("PEWKOTHManager.log");
+					m_instance = new Logging("PEWHVTManager.log");
 
 				return m_instance;
 			}
